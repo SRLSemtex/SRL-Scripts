@@ -1,0 +1,35 @@
+program SemtexFishingGuildUpdater;
+{$i srl-6/srl.simba}
+
+(* Auto-Updater file:
+
+      Run to get latest version of the script.
+      The script will appear in the same directory as this script.
+                                                                          *)
+const
+  Version = 0.0;
+
+procedure getUpdate();
+var
+  newFile: Integer;
+  newVer: Extended;
+begin
+  newVer := strToFloat(getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/version.txt'));
+  printf('Current script Version: %f || Online script Version: %f', [Version, newVer]);
+
+  if newVer > Version then
+  begin
+    printf('Updating ' + 'SemtexFishingGuild.simba' + ' from Version %f to %f', [Version, newVer]);
+    newFile := rewriteFile(scriptPath + 'SemtexFishingGuild.simba', false);
+    writeFileString(newFile, getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/SemtexFishingGuild.simba'));
+    closeFile(newFile);
+    print('New script saved to: ' + scriptPath);
+    terminateScript();
+  end;
+end;
+
+begin
+  clearDebug();
+  disableSRLLog := True;
+  getUpdate();
+end.
