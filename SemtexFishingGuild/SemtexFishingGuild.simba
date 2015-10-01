@@ -5,7 +5,7 @@ program SemtexFishingGuild;
 {$i srl-6/lib/misc/srlplayerform.simba}
 
 const
-Version = 1.2;
+Version = 1.3;
 
 var
   LoadsDone, startingXP, fishCaught: integer;
@@ -567,14 +567,14 @@ var
   newFile: Integer;
   newVer: Extended;
 begin
-  newVer := strToFloat(getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/version.txt'));
+  newVer := strToFloat(getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/SRL-Scripts/master/SemtexFishingGuild/version.txt'));
   printf('Current script Version: %f || Online script Version: %f', [Version, newVer]);
 
   if newVer > Version then
   begin
     printf('Updating SemtexFishingGuild.simba from Version %f to %f', [Version, newVer]);
     newFile := rewriteFile(scriptPath + 'SemtexFishingGuild.simba', false);
-    writeFileString(newFile, getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/SemtexFishingGuild.simba'));
+    writeFileString(newFile, getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/SRL-Scripts/master/SemtexFishingGuild/SemtexFishingGuild.simba'));
     closeFile(newFile);
     print('Please reopen this file');
     terminateScript();

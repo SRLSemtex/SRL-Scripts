@@ -14,14 +14,14 @@ var
   newFile: Integer;
   newVer: Extended;
 begin
-  newVer := strToFloat(getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/version.txt'));
+  newVer := strToFloat(getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/SRL-Scripts/master/SemtexFishingGuild/version.txt'));
   printf('Current script Version: %f || Online script Version: %f', [Version, newVer]);
 
   if newVer > Version then
   begin
     printf('Updating ' + 'SemtexFishingGuild.simba' + ' from Version %f to %f', [Version, newVer]);
     newFile := rewriteFile(scriptPath + 'SemtexFishingGuild.simba', false);
-    writeFileString(newFile, getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/Fishing-Guild/master/SemtexFishingGuild.simba'));
+    writeFileString(newFile, getPage('http://tomstewart.net/proxy.php?url=https://raw.githubusercontent.com/SRLSemtex/SRL-Scripts/master/SemtexFishingGuild/SemtexFishingGuild.simba'));
     closeFile(newFile);
     print('New script saved to: ' + scriptPath);
     terminateScript();
